@@ -1,14 +1,16 @@
 package com.dpfht.testnews.features.category
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.ActivityCategoryBinding
+import com.dpfht.testnews.features.base.BaseActivity
+import com.dpfht.testnews.features.source.SourceActivity
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class CategoryActivity : AppCompatActivity() {
+class CategoryActivity : BaseActivity() {
 
   private lateinit var binding: ActivityCategoryBinding
   private val viewModel: CategoryViewModel by viewModel()
@@ -23,6 +25,12 @@ class CategoryActivity : AppCompatActivity() {
 
     binding.rvCategory.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     binding.rvCategory.adapter = adapter
+
+    adapter.onCategoryClick = { categoryName ->
+      val itn = Intent(this@CategoryActivity, SourceActivity::class.java)
+      itn.putExtra("category_name", categoryName)
+      startActivity(itn)
+    }
 
     viewModel.categoryData.observe(this, {
       if (it.isNotEmpty()) {

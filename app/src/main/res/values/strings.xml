@@ -1,6 +1,9 @@
 <resources>
   <string name="app_name">TestNews</string>
 
+  <string name="text_category">Category</string>
+  <string name="text_source">Source</string>
+
   <string-array name="arr_news_categories">
     <item>Business</item>
     <item>Entertainment</item>
@@ -11,5 +14,5 @@
     <item>Technology</item>
   </string-array>
 
-  <string name="text_category">Category</string>
+  <string name="msg_loading_file">loading…</string>
 </resources>

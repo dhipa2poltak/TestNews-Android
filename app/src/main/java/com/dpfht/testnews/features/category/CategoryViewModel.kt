@@ -2,9 +2,9 @@ package com.dpfht.testnews.features.category
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.dpfht.testnews.features.base.BaseViewModel
 
-class CategoryViewModel(private val repository: CategoryRepository): ViewModel() {
+class CategoryViewModel(private val repository: CategoryRepository): BaseViewModel() {
 
   var categories = ArrayList<String>()
 

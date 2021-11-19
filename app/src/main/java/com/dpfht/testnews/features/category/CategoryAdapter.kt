@@ -39,6 +39,11 @@ class CategoryAdapter(private val categories: ArrayList<String>): RecyclerView.A
 
     fun bindData(categoryName: String) {
       binding.tvCategory.text = categoryName
+      binding.root.setOnClickListener {
+        onCategoryClick?.invoke(categoryName)
+      }
     }
   }
+
+  var onCategoryClick: ((String) -> (Unit))? = null
 }
