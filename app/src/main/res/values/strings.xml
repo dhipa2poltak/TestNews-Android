@@ -1,0 +1,15 @@
+<resources>
+  <string name="app_name">TestNews</string>
+
+  <string-array name="arr_news_categories">
+    <item>Business</item>
+    <item>Entertainment</item>
+    <item>General</item>
+    <item>Health</item>
+    <item>Science</item>
+    <item>Sports</item>
+    <item>Technology</item>
+  </string-array>
+
+  <string name="text_category">Category</string>
+</resources>
