@@ -2,6 +2,9 @@ package com.dpfht.testnews.di
 
 import androidx.appcompat.app.AlertDialog
 import com.dpfht.testnews.R
+import com.dpfht.testnews.features.article.list.ListArticleAdapter
+import com.dpfht.testnews.features.article.list.ListArticleRepository
+import com.dpfht.testnews.features.article.list.ListArticleRepositoryImpl
 import com.dpfht.testnews.features.base.BaseActivity
 import com.dpfht.testnews.features.category.CategoryAdapter
 import com.dpfht.testnews.features.category.CategoryRepository
@@ -21,6 +24,8 @@ val myActivityModule = module {
   factory { provideCategoryAdapter(get()) }
   factory { provideSourceRepository(get()) }
   factory { provideSourceAdapter(get()) }
+  factory { provideListArticleRepository(get()) }
+  factory { provideListArticleAdapter() }
 
   factory { provideLoadingDialog(it[0]) }
 
@@ -56,10 +61,17 @@ fun provideSourceAdapter(sourceViewModel: SourceViewModel): SourceAdapter {
   return SourceAdapter(sourceViewModel.sources)
 }
 
+fun provideListArticleRepository(restService: RestService): ListArticleRepository {
+  return ListArticleRepositoryImpl(restService)
+}
+
+fun provideListArticleAdapter(): ListArticleAdapter {
+  return ListArticleAdapter()
+}
+
 fun provideLoadingDialog(activity: BaseActivity): AlertDialog {
   return AlertDialog.Builder(activity)
     .setCancelable(false)
     .setView(R.layout.dialog_loading)
-
     .create()
 }

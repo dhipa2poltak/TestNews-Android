@@ -1,5 +1,6 @@
 package com.dpfht.testnews.di
 
+import com.dpfht.testnews.features.article.list.ListArticleViewModel
 import com.dpfht.testnews.features.category.CategoryViewModel
 import com.dpfht.testnews.features.source.SourceViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -12,5 +13,9 @@ val viewModelModule = module {
 
   viewModel {
     SourceViewModel(get())
+  }
+
+  viewModel {
+    ListArticleViewModel(get())
   }
 }

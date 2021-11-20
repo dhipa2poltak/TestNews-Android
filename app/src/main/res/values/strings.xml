@@ -3,6 +3,10 @@
 
   <string name="text_category">Category</string>
   <string name="text_source">Source</string>
+  <string name="text_article">Article</string>
+
+  <string name="msg_loading_file">loading…</string>
+  <string name="text_banner">banner</string>
 
   <string-array name="arr_news_categories">
     <item>Business</item>
@@ -13,6 +17,4 @@
     <item>Sports</item>
     <item>Technology</item>
   </string-array>
-
-  <string name="msg_loading_file">loading…</string>
 </resources>

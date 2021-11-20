@@ -1,9 +1,11 @@
 package com.dpfht.testnews.di
 
+import com.dpfht.testnews.BuildConfig
 import com.dpfht.testnews.Config
 import com.dpfht.testnews.rest.RestService
 
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,7 +15,6 @@ val appModule = module {
   single { provideOkHttpClient(/*get()*/) }
   single { provideRetrofit(get(), Config.API_BASE_URL) }
   single { provideRestService(get()) }
-  //single { provideAppRepository(get()) }
 }
 
 /*
@@ -27,9 +28,14 @@ fun provideCertificatePinner(): CertificatePinner {
 */
 
 fun provideOkHttpClient(/*certificatePinner: CertificatePinner*/): OkHttpClient {
-  return OkHttpClient.Builder()
-    //.certificatePinner(certificatePinner)
-    .build()
+  return if (BuildConfig.DEBUG) {
+    val logging = HttpLoggingInterceptor()
+    logging.level = HttpLoggingInterceptor.Level.BODY
+
+    OkHttpClient.Builder().addInterceptor(logging).build()
+  } else {
+    OkHttpClient.Builder().build()
+  }
 }
 
 fun provideRetrofit(client: OkHttpClient, baseUrl: String): Retrofit {

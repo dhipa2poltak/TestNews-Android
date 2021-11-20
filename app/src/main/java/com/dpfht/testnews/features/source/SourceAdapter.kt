@@ -40,6 +40,11 @@ class SourceAdapter(private val sources: ArrayList<Source>): RecyclerView.Adapte
 
     fun bindData(source: Source) {
       binding.tvSource.text = source.name
+      binding.root.setOnClickListener {
+        onClickSource?.invoke(source)
+      }
     }
   }
+
+  var onClickSource: ((Source) -> (Unit))? = null
 }

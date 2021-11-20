@@ -15,6 +15,9 @@
       android:theme="@style/Theme.TestNews"
       tools:ignore="AllowBackup">
     <activity
+        android:name=".features.article.list.ListArticleActivity"
+        android:exported="false" />
+    <activity
         android:name=".features.source.SourceActivity"
         android:exported="false" />
     <activity
