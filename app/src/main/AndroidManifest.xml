@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dpfht.testnews">
 
-  <uses-permission android:name="android.permission.INTERNET" />
-
   <application
       android:name=".App"
       android:allowBackup="true"
@@ -14,6 +12,9 @@
       android:supportsRtl="true"
       android:theme="@style/Theme.TestNews"
       tools:ignore="AllowBackup">
+    <activity
+        android:name=".features.article.details.DetailsArticleActivity"
+        android:exported="false" />
     <activity
         android:name=".features.article.list.ListArticleActivity"
         android:exported="false" />
@@ -33,5 +34,7 @@
         android:name=".features.category.CategoryActivity"
         android:exported="false" />
   </application>
+
+  <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -28,6 +28,10 @@ class ListArticleAdapter: PagingDataAdapter<Article, ListArticleViewHolder>(list
     fun bind(position: Int, article: Article) {
       binding.tvArticleName.text = "${position + 1} - ${article.title}"
       Picasso.get().load(article.image).into(binding.ivArticleBanner)
+
+      binding.root.setOnClickListener {
+        onClickArticleItem?.invoke(article)
+      }
     }
   }
 
@@ -40,4 +44,6 @@ class ListArticleAdapter: PagingDataAdapter<Article, ListArticleViewHolder>(list
   override fun onBindViewHolder(holder: ListArticleViewHolder, position: Int) {
     holder.bind(position, getItem(position)!!)
   }
+
+  var onClickArticleItem: ((Article) -> (Unit))? = null
 }

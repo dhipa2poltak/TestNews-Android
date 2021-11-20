@@ -1,10 +1,12 @@
 package com.dpfht.testnews.features.article.list
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.ActivityListArticleBinding
+import com.dpfht.testnews.features.article.details.DetailsArticleActivity
 import com.dpfht.testnews.features.base.BaseActivity
 import com.dpfht.testnews.net.State
 import kotlinx.coroutines.launch
@@ -34,6 +36,13 @@ class ListArticleActivity : BaseActivity() {
 
     binding.rvArticle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     binding.rvArticle.adapter = adapter
+
+    adapter.onClickArticleItem = { article ->
+      val itn = Intent(this@ListArticleActivity, DetailsArticleActivity::class.java)
+      itn.putExtra("url", article.url)
+      itn.putExtra("title", article.title)
+      startActivity(itn)
+    }
 
     fetchNewsLiveData()
   }
