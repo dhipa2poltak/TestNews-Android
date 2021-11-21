@@ -1,9 +1,12 @@
 package com.dpfht.testnews.features.article.details
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.dpfht.testnews.Constant
+import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.ActivityDetailsArticleBinding
 import com.dpfht.testnews.features.base.BaseActivity
 
@@ -13,12 +16,13 @@ class DetailsArticleActivity : BaseActivity() {
   private var url = ""
   private var title = ""
 
+  @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityDetailsArticleBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    url = intent.getStringExtra("url") ?: ""
+    url = intent.getStringExtra(Constant.KEY_EXTRA_URL) ?: ""
     if (url.isNotEmpty()) {
       binding.wvArticle.settings.javaScriptEnabled = true
       binding.wvArticle.settings.javaScriptCanOpenWindowsAutomatically = true
@@ -45,7 +49,7 @@ class DetailsArticleActivity : BaseActivity() {
       binding.wvArticle.loadUrl(url)
     }
 
-    title = intent.getStringExtra("title") ?: "Unknown"
+    title = intent.getStringExtra(Constant.KEY_EXTRA_TITLE) ?: resources.getString(R.string.text_unknown)
     setToolbar()
   }
 

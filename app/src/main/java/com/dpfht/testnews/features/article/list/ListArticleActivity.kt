@@ -7,6 +7,7 @@ import android.os.Looper
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dpfht.testnews.Constant
 import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.ActivityListArticleBinding
 import com.dpfht.testnews.features.article.details.DetailsArticleActivity
@@ -37,9 +38,9 @@ class ListArticleActivity : BaseActivity() {
     binding = ActivityListArticleBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    categoryName = intent.getStringExtra("category_name") ?: "Unknown"
-    sourceName = intent.getStringExtra("source_name") ?: "Unknown"
-    sourceId = intent.getStringExtra("source_id") ?: "Unknown"
+    categoryName = intent.getStringExtra(Constant.KEY_EXTRA_CATEGORY_NAME) ?: resources.getString(R.string.text_unknown)
+    sourceName = intent.getStringExtra(Constant.KEY_EXTRA_SOURCE_NAME) ?: resources.getString(R.string.text_unknown)
+    sourceId = intent.getStringExtra(Constant.KEY_EXTRA_SOURCE_ID) ?: resources.getString(R.string.text_unknown)
 
     setToolbar()
 
@@ -48,8 +49,8 @@ class ListArticleActivity : BaseActivity() {
 
     adapter.onClickArticleItem = { article ->
       val itn = Intent(this@ListArticleActivity, DetailsArticleActivity::class.java)
-      itn.putExtra("url", article.url)
-      itn.putExtra("title", article.title)
+      itn.putExtra(Constant.KEY_EXTRA_URL, article.url)
+      itn.putExtra(Constant.KEY_EXTRA_TITLE, article.title)
       startActivity(itn)
     }
 
@@ -93,7 +94,7 @@ class ListArticleActivity : BaseActivity() {
 
         taskSearch?.cancel()
         createTimerTask()
-        timer.schedule(taskSearch, 500)
+        timer.schedule(taskSearch, Constant.TYPE_SEARCH_TEXT_DELAY_TIME)
 
         /*
         timer.cancel()
@@ -107,7 +108,7 @@ class ListArticleActivity : BaseActivity() {
 
       taskSearch?.cancel()
       createTimerTask()
-      timer.schedule(taskSearch, 500)
+      timer.schedule(taskSearch, Constant.TYPE_SEARCH_TEXT_DELAY_TIME)
 
       /*
       timer.cancel()

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dpfht.testnews.Constant
 import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.ActivitySourceBinding
 import com.dpfht.testnews.features.article.list.ListArticleActivity
@@ -25,7 +26,7 @@ class SourceActivity : BaseActivity() {
     binding = ActivitySourceBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    categoryName = intent.getStringExtra("category_name") ?: "Unknown"
+    categoryName = intent.getStringExtra(Constant.KEY_EXTRA_CATEGORY_NAME) ?: resources.getString(R.string.text_unknown)
 
     setToolbar()
 
@@ -34,9 +35,9 @@ class SourceActivity : BaseActivity() {
 
     adapter.onClickSource = { source ->
       val itn = Intent(this@SourceActivity, ListArticleActivity::class.java)
-      itn.putExtra("category_name", categoryName)
-      itn.putExtra("source_name", source.name)
-      itn.putExtra("source_id", source.id)
+      itn.putExtra(Constant.KEY_EXTRA_CATEGORY_NAME, categoryName)
+      itn.putExtra(Constant.KEY_EXTRA_SOURCE_NAME, source.name)
+      itn.putExtra(Constant.KEY_EXTRA_SOURCE_ID, source.id)
       startActivity(itn)
     }
 

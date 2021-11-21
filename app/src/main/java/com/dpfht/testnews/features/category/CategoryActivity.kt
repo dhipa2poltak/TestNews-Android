@@ -3,6 +3,7 @@ package com.dpfht.testnews.features.category
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dpfht.testnews.Constant
 import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.ActivityCategoryBinding
 import com.dpfht.testnews.features.base.BaseActivity
@@ -28,7 +29,7 @@ class CategoryActivity : BaseActivity() {
 
     adapter.onCategoryClick = { categoryName ->
       val itn = Intent(this@CategoryActivity, SourceActivity::class.java)
-      itn.putExtra("category_name", categoryName)
+      itn.putExtra(Constant.KEY_EXTRA_CATEGORY_NAME, categoryName)
       startActivity(itn)
     }
 
