@@ -30,10 +30,12 @@ class CategoryAdapter(private val categories: ArrayList<String>): RecyclerView.A
     }
   }
 
+  /*
   fun clearData() {
     categories.clear()
     notifyDataSetChanged()
   }
+  */
 
   inner class CategoryHolder(private val binding: RowCategoryBinding): RecyclerView.ViewHolder(binding.root) {
 

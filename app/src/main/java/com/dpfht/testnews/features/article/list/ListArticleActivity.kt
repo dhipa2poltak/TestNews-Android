@@ -95,13 +95,6 @@ class ListArticleActivity : BaseActivity() {
         taskSearch?.cancel()
         createTimerTask()
         timer.schedule(taskSearch, Constant.TYPE_SEARCH_TEXT_DELAY_TIME)
-
-        /*
-        timer.cancel()
-        timer = Timer()
-        createTimerTask()
-        timer.schedule(taskSearch, 500)
-        */
       }
     } else if (textSearch != this.textSearch) {
       this.textSearch = textSearch
@@ -109,13 +102,6 @@ class ListArticleActivity : BaseActivity() {
       taskSearch?.cancel()
       createTimerTask()
       timer.schedule(taskSearch, Constant.TYPE_SEARCH_TEXT_DELAY_TIME)
-
-      /*
-      timer.cancel()
-      timer = Timer()
-      createTimerTask()
-      timer.schedule(taskSearch, 500)
-      */
     }
   }
 

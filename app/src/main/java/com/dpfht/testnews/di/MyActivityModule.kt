@@ -28,21 +28,6 @@ val myActivityModule = module {
   factory { provideListArticleAdapter() }
 
   factory { provideLoadingDialog(it[0]) }
-
-  /*
-  factory { provideGenreAdapter(it[0]) }
-  factory { provideActivityGenreBinding(it[0], it[1]) }
-
-  factory { provideMovieByGenreAdapter(it[0]) }
-  factory { provideActivityMovieByGenreBinding(it[0], it[1]) }
-
-  factory { provideActivityMovieDetailBinding(it[0], it[1]) }
-
-  factory { provideReviewAdapter(it[0]) }
-  factory { provideActivityMovieReviewBinding(it[0], it[1]) }
-
-  factory { provideLoadingDialog(it[0]) }
-  */
 }
 
 fun provideCategoryRepository(categories: List<String>): CategoryRepository {

@@ -36,15 +36,6 @@ class ListArticleAdapter: PagingDataAdapter<Article, ListArticleViewHolder>(list
         binding.tvArticleAuthor.visibility = View.GONE
         binding.tvArticleAuthor.text = ""
       }
-      /*
-      if (article.publishedAt.isNotEmpty()) {
-        binding.tvArticlePublishedAt.visibility = View.GONE
-        binding.tvArticlePublishedAt.text = article.publishedAt
-      } else {
-        binding.tvArticlePublishedAt.visibility = View.GONE
-        binding.tvArticlePublishedAt.text = ""
-      }
-      */
       Picasso.get().load(article.image).into(binding.ivArticleBanner)
 
       binding.root.setOnClickListener {
