@@ -1,4 +1,4 @@
-package com.dpfht.testnews.features.article.list
+package com.dpfht.testnews.ui.article.list
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData

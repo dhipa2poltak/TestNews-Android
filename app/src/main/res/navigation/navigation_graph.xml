@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/categoryFragment">
+
+  <fragment
+      android:id="@+id/categoryFragment"
+      android:name="com.dpfht.testnews.ui.category.CategoryFragment"
+      android:label="Category"
+      tools:layout="@layout/fragment_category" >
+
+    <action
+        android:id="@+id/action_categoryFragment_to_sourceFragment"
+        app:destination="@id/sourceFragment"/>
+
+  </fragment>
+
+  <fragment
+      android:id="@+id/sourceFragment"
+      android:name="com.dpfht.testnews.ui.source.SourceFragment"
+      android:label="Source"
+      tools:layout="@layout/fragment_source">
+
+    <argument
+        android:name="category_name"
+        android:defaultValue="Unknown"
+        app:argType="string" />
+
+    <action
+        android:id="@+id/action_sourceFragment_to_listArticleFragment"
+        app:destination="@id/listArticleFragment"/>
+  </fragment>
+
+  <fragment
+      android:id="@+id/listArticleFragment"
+      android:name="com.dpfht.testnews.ui.article.list.ListArticleFragment"
+      android:label="List Article"
+      tools:layout="@layout/fragment_list_article">
+
+    <argument
+        android:name="category_name"
+        android:defaultValue="Unknown"
+        app:argType="string" />
+
+    <argument
+        android:name="source_name"
+        android:defaultValue="Unknown"
+        app:argType="string" />
+
+    <argument
+        android:name="source_id"
+        android:defaultValue="Unknown"
+        app:argType="string" />
+
+    <action
+        android:id="@+id/action_listArticleFragment_to_detailsArticleFragment"
+        app:destination="@id/detailsArticleFragment"/>
+  </fragment>
+
+  <fragment
+      android:id="@+id/detailsArticleFragment"
+      android:name="com.dpfht.testnews.ui.article.details.DetailsArticleFragment"
+      android:label="Details Article"
+      tools:layout="@layout/fragment_details_article">
+
+    <argument
+        android:name="url"
+        android:defaultValue="Unknown"
+        app:argType="string" />
+
+    <argument
+      android:name="title"
+      android:defaultValue="Unknwon"
+      app:argType="string"/>
+  </fragment>
+</navigation>

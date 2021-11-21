@@ -1,8 +1,8 @@
 package com.dpfht.testnews.di
 
-import com.dpfht.testnews.features.article.list.ListArticleViewModel
-import com.dpfht.testnews.features.category.CategoryViewModel
-import com.dpfht.testnews.features.source.SourceViewModel
+import com.dpfht.testnews.ui.article.list.ListArticleViewModel
+import com.dpfht.testnews.ui.category.CategoryViewModel
+import com.dpfht.testnews.ui.source.SourceViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

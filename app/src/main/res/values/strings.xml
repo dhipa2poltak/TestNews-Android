@@ -9,7 +9,10 @@
   <string name="text_banner">banner</string>
   <string name="text_search_source">search source…</string>
   <string name="text_search_article">search article…</string>
+  <!--
   <string name="text_unknown">Unknown</string>
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  -->
 
   <string-array name="arr_news_categories">
     <item>Business</item>

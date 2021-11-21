@@ -1,32 +1,32 @@
 package com.dpfht.testnews
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.dpfht.testnews.features.category.CategoryActivity
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import okhttp3.CertificatePinner
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import com.dpfht.testnews.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    //setContentView(R.layout.activity_main)
 
-    val isTest = false
-    if (isTest) {
-      GlobalScope.launch {
-        testHit()
-      }
-    } else {
-      startActivity(Intent(this, CategoryActivity::class.java))
-      finish()
-    }
+    val binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    val navHostFragment =
+      supportFragmentManager.findFragmentById(R.id.demo_nav_host_fragment) as NavHostFragment
+    val navController = navHostFragment.navController
+    NavigationUI.setupActionBarWithNavController(this, navController)
   }
 
+  override fun onSupportNavigateUp(): Boolean {
+    val navController = Navigation.findNavController(this, R.id.demo_nav_host_fragment)
+    return navController.navigateUp() || super.onSupportNavigateUp()
+  }
+
+  /*
   private fun testHit() {
     val hostname = "newsapi.org"
     val certificatePinner = CertificatePinner.Builder()
@@ -41,4 +41,5 @@ class MainActivity : AppCompatActivity() {
       .build()
     client.newCall(request).execute()
   }
+  */
 }

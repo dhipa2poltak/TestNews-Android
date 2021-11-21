@@ -14,29 +14,15 @@
       android:supportsRtl="true"
       android:theme="@style/Theme.TestNews"
       tools:ignore="AllowBackup">
-    <activity
-        android:name=".features.article.details.DetailsArticleActivity"
-        android:exported="false" />
-    <activity
-        android:name=".features.article.list.ListArticleActivity"
-        android:exported="false"
-        android:windowSoftInputMode="stateHidden"/>
-    <activity
-        android:name=".features.source.SourceActivity"
-        android:exported="false"
-        android:windowSoftInputMode="stateHidden"/>
+
     <activity
         android:name=".MainActivity"
         android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity
-        android:name=".features.category.CategoryActivity"
-        android:exported="false" />
   </application>
 
 </manifest>

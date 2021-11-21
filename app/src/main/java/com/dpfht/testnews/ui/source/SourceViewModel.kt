@@ -1,9 +1,9 @@
-package com.dpfht.testnews.features.source
+package com.dpfht.testnews.ui.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.dpfht.testnews.features.base.BaseViewModel
+import com.dpfht.testnews.ui.base.BaseViewModel
 import com.dpfht.testnews.model.Source
 import com.dpfht.testnews.model.SourceResponse
 import com.dpfht.testnews.net.ResultWrapper.GenericError

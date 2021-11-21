@@ -1,4 +1,4 @@
-package com.dpfht.testnews.features.source
+package com.dpfht.testnews.ui.source
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

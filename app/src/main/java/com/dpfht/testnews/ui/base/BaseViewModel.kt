@@ -1,4 +1,4 @@
-package com.dpfht.testnews.features.base
+package com.dpfht.testnews.ui.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

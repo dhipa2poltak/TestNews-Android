@@ -1,8 +1,8 @@
-package com.dpfht.testnews.features.category
+package com.dpfht.testnews.ui.category
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dpfht.testnews.features.base.BaseViewModel
+import com.dpfht.testnews.ui.base.BaseViewModel
 
 class CategoryViewModel(private val repository: CategoryRepository): BaseViewModel() {
 

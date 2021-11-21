@@ -1,4 +1,4 @@
-package com.dpfht.testnews.features.category
+package com.dpfht.testnews.ui.category
 
 interface CategoryRepository {
 

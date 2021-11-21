@@ -1,4 +1,4 @@
-package com.dpfht.testnews.features.category
+package com.dpfht.testnews.ui.category
 
 class CategoryRepositoryImpl(private val categories: List<String>): CategoryRepository {
 

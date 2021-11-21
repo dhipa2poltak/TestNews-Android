@@ -1,4 +1,4 @@
-package com.dpfht.testnews.features.article.list
+package com.dpfht.testnews.ui.article.list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dpfht.testnews.databinding.RowArticleBinding
-import com.dpfht.testnews.features.article.list.ListArticleAdapter.ListArticleViewHolder
+import com.dpfht.testnews.ui.article.list.ListArticleAdapter.ListArticleViewHolder
 import com.dpfht.testnews.model.Article
 import com.squareup.picasso.Picasso
 

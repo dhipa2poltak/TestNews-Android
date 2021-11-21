@@ -1,10 +1,10 @@
-package com.dpfht.testnews.features.article.list
+package com.dpfht.testnews.ui.article.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.dpfht.testnews.features.article.list.ListArticleRepositoryImpl.Companion.DEFAULT_PAGE_INDEX
-import com.dpfht.testnews.features.article.list.ListArticleRepositoryImpl.Companion.DEFAULT_PAGE_SIZE
+import com.dpfht.testnews.ui.article.list.ListArticleRepositoryImpl.Companion.DEFAULT_PAGE_INDEX
+import com.dpfht.testnews.ui.article.list.ListArticleRepositoryImpl.Companion.DEFAULT_PAGE_SIZE
 import com.dpfht.testnews.model.Article
 import com.dpfht.testnews.net.State
 import com.dpfht.testnews.rest.RestService

@@ -1,26 +1,31 @@
-package com.dpfht.testnews.features.article.list
+package com.dpfht.testnews.ui.article.list
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpfht.testnews.Constant
 import com.dpfht.testnews.R
-import com.dpfht.testnews.databinding.ActivityListArticleBinding
-import com.dpfht.testnews.features.article.details.DetailsArticleActivity
-import com.dpfht.testnews.features.base.BaseActivity
+import com.dpfht.testnews.databinding.FragmentListArticleBinding
 import com.dpfht.testnews.net.State
+import com.dpfht.testnews.ui.base.BaseFragment
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.Timer
 import java.util.TimerTask
 
-class ListArticleActivity : BaseActivity() {
+class ListArticleFragment: BaseFragment() {
 
-  private lateinit var binding: ActivityListArticleBinding
+  private lateinit var binding: FragmentListArticleBinding
   private val viewModel: ListArticleViewModel by viewModel()
 
   //private val adapter: ListArticleAdapter by inject()
@@ -33,26 +38,30 @@ class ListArticleActivity : BaseActivity() {
   private var textSearch: String? = null
   private val handler = Handler(Looper.getMainLooper())
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityListArticleBinding.inflate(layoutInflater)
-    setContentView(binding.root)
+  override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View {
+    setHasOptionsMenu(true)
+    binding = FragmentListArticleBinding.inflate(layoutInflater, container, false)
 
-    categoryName = intent.getStringExtra(Constant.KEY_EXTRA_CATEGORY_NAME) ?: resources.getString(R.string.text_unknown)
-    sourceName = intent.getStringExtra(Constant.KEY_EXTRA_SOURCE_NAME) ?: resources.getString(R.string.text_unknown)
-    sourceId = intent.getStringExtra(Constant.KEY_EXTRA_SOURCE_ID) ?: resources.getString(R.string.text_unknown)
+    return binding.root
+  }
+
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+
+    val args = ListArticleFragmentArgs.fromBundle(requireArguments())
+    categoryName = args.categoryName
+    sourceName = args.sourceName
+    sourceId = args.sourceId
 
     setToolbar()
 
-    binding.rvArticle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    binding.rvArticle.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     binding.rvArticle.adapter = adapter
 
-    adapter.onClickArticleItem = { article ->
-      val itn = Intent(this@ListArticleActivity, DetailsArticleActivity::class.java)
-      itn.putExtra(Constant.KEY_EXTRA_URL, article.url)
-      itn.putExtra(Constant.KEY_EXTRA_TITLE, article.title)
-      startActivity(itn)
-    }
+    setClickListenerAdapter()
 
     binding.etSearchArticle.addTextChangedListener {
       doSearch(it.toString())
@@ -62,23 +71,18 @@ class ListArticleActivity : BaseActivity() {
   }
 
   private fun setToolbar() {
-    binding.toolbar.title = ""
-
     val str = "${resources.getString(R.string.text_article)}s of $sourceName source in $categoryName category"
-    binding.tvTitle.text = str
-
-    setSupportActionBar(binding.toolbar)
-    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    (requireActivity() as AppCompatActivity).supportActionBar?.title = str
   }
 
   private fun fetchNewsLiveData(query: String?) {
-    viewModel.fetchArticles(sourceId, query).observe(this, {
+    viewModel.fetchArticles(sourceId, query).observe(requireActivity(), {
       lifecycleScope.launch {
         adapter.submitData(it)
       }
     })
 
-    viewModel.getState()?.observe(this, { state ->
+    viewModel.getState()?.observe(requireActivity(), { state ->
       if (state == State.LOADING) {
         prgDialog.show()
       } else {
@@ -113,6 +117,7 @@ class ListArticleActivity : BaseActivity() {
       override fun run() {
         handler.post {
           adapter = ListArticleAdapter()
+          setClickListenerAdapter()
           binding.rvArticle.adapter = adapter
           fetchNewsLiveData(textSearch)
         }
@@ -120,9 +125,24 @@ class ListArticleActivity : BaseActivity() {
     }
   }
 
-  override fun onSupportNavigateUp(): Boolean {
-    finish()
+  private fun setClickListenerAdapter() {
+    adapter.onClickArticleItem = { article ->
+      val action = ListArticleFragmentDirections.actionListArticleFragmentToDetailsArticleFragment()
+      action.url = article.url
+      action.title = article.title
+      Navigation.findNavController(requireView()).navigate(action)
+    }
+  }
 
-    return true
+  override fun onResume() {
+    super.onResume()
+
+    val callback = object : OnBackPressedCallback(true) {
+      override fun handleOnBackPressed() {
+        NavHostFragment.findNavController(this@ListArticleFragment).navigateUp()
+      }
+    }
+
+    requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
   }
 }
