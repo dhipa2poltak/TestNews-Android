@@ -20,7 +20,8 @@ interface RestService {
   suspend fun getArticles(
     @Query("page") page: Int,
     @Query("pageSize") pageSize: Int,
-    @Query("sources") sources: String
+    @Query("sources") sources: String,
+    @Query("q") query: String?
   ): ArticlesResponse
 
   @GET("top-headlines/sources?apiKey=6b799819f36740a290887d40e6f5fef8")

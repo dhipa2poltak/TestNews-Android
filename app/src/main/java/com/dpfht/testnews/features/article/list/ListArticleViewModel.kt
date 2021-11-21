@@ -10,8 +10,8 @@ import com.dpfht.testnews.net.State
 
 class ListArticleViewModel(private val listArticleRepository: ListArticleRepository): BaseViewModel() {
 
-  fun fetchArticles(sourceId: String): LiveData<PagingData<Article>> {
-    return listArticleRepository.getArticles(sourceId)
+  fun fetchArticles(sourceId: String, query: String?): LiveData<PagingData<Article>> {
+    return listArticleRepository.getArticles(sourceId, query)
       .cachedIn(viewModelScope)
   }
 

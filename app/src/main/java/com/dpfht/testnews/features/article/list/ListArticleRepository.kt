@@ -7,7 +7,7 @@ import com.dpfht.testnews.net.State
 
 interface ListArticleRepository {
 
-  fun getArticles(sourceId: String): LiveData<PagingData<Article>>
+  fun getArticles(sourceId: String, query: String?): LiveData<PagingData<Article>>
 
   fun getState(): LiveData<State>?
 }

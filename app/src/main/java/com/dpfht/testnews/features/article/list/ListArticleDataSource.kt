@@ -9,7 +9,7 @@ import com.dpfht.testnews.model.Article
 import com.dpfht.testnews.net.State
 import com.dpfht.testnews.rest.RestService
 
-class ListArticleDataSource(private val restService: RestService, private val sourceId: String): PagingSource<Int, Article>() {
+class ListArticleDataSource(private val restService: RestService, private val sourceId: String, private val query: String?): PagingSource<Int, Article>() {
 
   var state: MutableLiveData<State> = MutableLiveData()
 
@@ -19,7 +19,7 @@ class ListArticleDataSource(private val restService: RestService, private val so
     val page = params.key ?: DEFAULT_PAGE_INDEX
 
     try {
-      val response = restService.getArticles(page, DEFAULT_PAGE_SIZE, sourceId)
+      val response = restService.getArticles(page, DEFAULT_PAGE_SIZE, sourceId, query)
       updateState(State.DONE)
       return LoadResult.Page(
         response.articles, prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1,

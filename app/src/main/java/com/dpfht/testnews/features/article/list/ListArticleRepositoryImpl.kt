@@ -18,9 +18,9 @@ class ListArticleRepositoryImpl(private val restService: RestService): ListArtic
 
   private var ds: ListArticleDataSource? = null
 
-  override fun getArticles(sourceId: String): LiveData<PagingData<Article>> {
+  override fun getArticles(sourceId: String, query: String?): LiveData<PagingData<Article>> {
     val pagingConfig = getDefaultPageConfig()
-    ds = ListArticleDataSource(restService, sourceId)
+    ds = ListArticleDataSource(restService, sourceId, query)
 
     return Pager(
       config = pagingConfig,
