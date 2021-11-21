@@ -14,13 +14,21 @@ import kotlinx.coroutines.launch
 
 class SourceViewModel(private val sourceRepository: SourceRepository): BaseViewModel() {
 
-  var sources = ArrayList<Source>()
+  val sources = ArrayList<Source>()
+  val sourcesFilter = ArrayList<Source>()
 
   private val _sourceData = MutableLiveData<List<Source>>()
   val sourceData: LiveData<List<Source>> get() = _sourceData
 
+  private val _clearSourceData = MutableLiveData(false)
+  val clearSourceData: LiveData<Boolean> get() = _clearSourceData
+
   fun resetSourceData() {
     _sourceData.value = arrayListOf()
+  }
+
+  fun resetClearSourceData() {
+    _clearSourceData.value = false
   }
 
   fun start(category: String) {
@@ -45,7 +53,22 @@ class SourceViewModel(private val sourceRepository: SourceRepository): BaseViewM
   private fun doSuccess(sourceResponse: SourceResponse) {
     val datas = sourceResponse.sources
     if (datas.isNotEmpty()) {
-      _sourceData.postValue(datas)
+      sources.clear()
+      sources.addAll(datas)
+      //_sourceData.postValue(datas)
+
+      doFilter()
+    }
+  }
+
+  fun doFilter(filterText: String = "") {
+    //sourcesFilter.clear()
+    _clearSourceData.value = true
+
+    if (filterText.isEmpty()) {
+      _sourceData.postValue(sources)
+    } else {
+      _sourceData.postValue(sources.filter { it.name.lowercase().contains(filterText.lowercase()) })
     }
   }
 }

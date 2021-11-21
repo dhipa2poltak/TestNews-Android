@@ -3,6 +3,7 @@ package com.dpfht.testnews.features.source
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.ActivitySourceBinding
@@ -46,6 +47,17 @@ class SourceActivity : BaseActivity() {
       }
     })
 
+    viewModel.clearSourceData.observe(this, {
+      if (it) {
+        adapter.clearData()
+        viewModel.resetClearSourceData()
+      }
+    })
+
+    binding.etSearchSource.addTextChangedListener {
+      viewModel.doFilter(it.toString())
+    }
+
     viewModel.isShowDialogLoading.observe(this, { value ->
       if (value) {
         prgDialog.show()
@@ -67,7 +79,10 @@ class SourceActivity : BaseActivity() {
 
   private fun setToolbar() {
     binding.toolbar.title = ""
-    binding.tvTitle.text = "${resources.getString(R.string.text_source)}s of $categoryName"
+
+    val str = "${resources.getString(R.string.text_source)}s of $categoryName"
+    binding.tvTitle.text = str
+
     setSupportActionBar(binding.toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
   }

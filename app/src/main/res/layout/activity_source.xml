@@ -31,12 +31,33 @@
 
   </androidx.appcompat.widget.Toolbar>
 
+  <LinearLayout
+      android:id="@+id/llSearch"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/toolbar"
+      app:layout_constraintEnd_toEndOf="parent">
+
+    <EditText
+        android:id="@+id/etSearchSource"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:hint="@string/text_search_source"
+        android:autofillHints="@string/text_search_source"
+        android:inputType="text" />
+
+  </LinearLayout>
+
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/rvSource"
       android:layout_width="0dp"
       android:layout_height="0dp"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/toolbar"
+      app:layout_constraintTop_toBottomOf="@id/llSearch"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintBottom_toBottomOf="parent"/>
 

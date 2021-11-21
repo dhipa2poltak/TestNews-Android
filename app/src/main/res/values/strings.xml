@@ -7,6 +7,7 @@
 
   <string name="msg_loading_file">loading…</string>
   <string name="text_banner">banner</string>
+  <string name="text_search_source">search source…</string>
 
   <string-array name="arr_news_categories">
     <item>Business</item>

@@ -58,7 +58,8 @@ fun provideSourceRepository(restService: RestService): SourceRepository {
 }
 
 fun provideSourceAdapter(sourceViewModel: SourceViewModel): SourceAdapter {
-  return SourceAdapter(sourceViewModel.sources)
+  //return SourceAdapter(sourceViewModel.sources)
+  return SourceAdapter(sourceViewModel.sourcesFilter)
 }
 
 fun provideListArticleRepository(restService: RestService): ListArticleRepository {
