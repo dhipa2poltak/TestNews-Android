@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dpfht.testnews">
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
   <application
       android:name=".App"
       android:allowBackup="true"
@@ -17,10 +19,12 @@
         android:exported="false" />
     <activity
         android:name=".features.article.list.ListArticleActivity"
-        android:exported="false" />
+        android:exported="false"
+        android:windowSoftInputMode="stateHidden"/>
     <activity
         android:name=".features.source.SourceActivity"
-        android:exported="false" />
+        android:exported="false"
+        android:windowSoftInputMode="stateHidden"/>
     <activity
         android:name=".MainActivity"
         android:exported="true">
@@ -34,7 +38,5 @@
         android:name=".features.category.CategoryActivity"
         android:exported="false" />
   </application>
-
-  <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

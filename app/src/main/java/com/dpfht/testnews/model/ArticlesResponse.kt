@@ -15,7 +15,7 @@ data class Article(
   @SerializedName("source")
   val source: PairSource,
   @SerializedName("author")
-  val author: String,
+  val author: String?,
   @SerializedName("title")
   val title: String,
   @SerializedName("description")
@@ -24,7 +24,7 @@ data class Article(
   val url: String,
   @SerializedName("urlToImage")
   val image: String,
-  @SerializedName("publishAt")
+  @SerializedName("publishedAt")
   val publishedAt: String,
   @SerializedName("content")
   val content: String

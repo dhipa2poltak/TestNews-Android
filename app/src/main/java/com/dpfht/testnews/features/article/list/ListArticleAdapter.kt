@@ -1,6 +1,7 @@
 package com.dpfht.testnews.features.article.list
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -26,7 +27,24 @@ class ListArticleAdapter: PagingDataAdapter<Article, ListArticleViewHolder>(list
 
   inner class ListArticleViewHolder(private val binding: RowArticleBinding): RecyclerView.ViewHolder(binding.root) {
     fun bind(position: Int, article: Article) {
-      binding.tvArticleName.text = "${position + 1} - ${article.title}"
+      val str = "${position + 1} - ${article.title}"
+      binding.tvArticleName.text = str
+      if (article.author != null && article.author.isNotEmpty()) {
+        binding.tvArticleAuthor.visibility = View.VISIBLE
+        binding.tvArticleAuthor.text = article.author
+      } else {
+        binding.tvArticleAuthor.visibility = View.GONE
+        binding.tvArticleAuthor.text = ""
+      }
+      /*
+      if (article.publishedAt.isNotEmpty()) {
+        binding.tvArticlePublishedAt.visibility = View.GONE
+        binding.tvArticlePublishedAt.text = article.publishedAt
+      } else {
+        binding.tvArticlePublishedAt.visibility = View.GONE
+        binding.tvArticlePublishedAt.text = ""
+      }
+      */
       Picasso.get().load(article.image).into(binding.ivArticleBanner)
 
       binding.root.setOnClickListener {

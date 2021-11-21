@@ -15,22 +15,54 @@
       android:layout_height="wrap_content"
       android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tvArticleName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="2dp"
+        android:textColor="#333"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Sample news title" />
+
+    <TextView
+        android:id="@+id/tvArticleAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#333"
+        android:textSize="14sp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="12dp"
+        tools:text="Sample news author" />
+
+    <!--
+    <TextView
+        android:id="@+id/tvArticlePublishedAt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="12dp"
+        android:textColor="#333"
+        android:textSize="14sp"
+        tools:text="Sample news published at" />
+    -->
+
     <ImageView
         android:id="@+id/ivArticleBanner"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="fitXY"
         android:contentDescription="@string/text_banner"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12sp"
         tools:src="@mipmap/ic_launcher" />
-
-    <TextView
-        android:id="@+id/tvArticleName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:textColor="#333"
-        android:textSize="16sp"
-        tools:text="Sample news title" />
 
   </LinearLayout>
 
