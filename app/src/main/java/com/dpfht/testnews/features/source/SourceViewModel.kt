@@ -41,7 +41,7 @@ class SourceViewModel(private val sourceRepository: SourceRepository): BaseViewM
       when (val sourceResponse = sourceRepository.getSources(category.lowercase())) {
         is NetworkError -> toastMessage.value = "network error"
         is GenericError -> toastMessage.value =
-          "error ${sourceResponse.code} ${sourceResponse.error?.statusMessage}"
+          "error ${sourceResponse.code} ${sourceResponse.error?.message}"
         is Success -> doSuccess(sourceResponse.value)
       }
 
