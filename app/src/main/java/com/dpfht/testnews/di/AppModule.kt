@@ -2,11 +2,11 @@ package com.dpfht.testnews.di
 
 import com.dpfht.testnews.BuildConfig
 import com.dpfht.testnews.Config
+import com.dpfht.testnews.data.api.rest.AuthInterceptor
 import com.dpfht.testnews.data.api.rest.RestService
+import com.dpfht.testnews.data.api.rest.UnsafeOkHttpClient
 import okhttp3.CertificatePinner
-
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,18 +27,17 @@ fun provideCertificatePinner(): CertificatePinner {
 }
 
 fun provideOkHttpClient(certificatePinner: CertificatePinner): OkHttpClient {
-  return if (BuildConfig.DEBUG) {
-    val logging = HttpLoggingInterceptor()
-    logging.level = HttpLoggingInterceptor.Level.BODY
-
-    OkHttpClient.Builder().addInterceptor(logging)
-      .certificatePinner(certificatePinner)
-      .build()
-  } else {
-    OkHttpClient.Builder()
-      .certificatePinner(certificatePinner)
-      .build()
+  if (BuildConfig.DEBUG) {
+    return UnsafeOkHttpClient.getUnsafeOkHttpClient()
   }
+
+  val httpClientBuilder = OkHttpClient()
+    .newBuilder()
+    .certificatePinner(certificatePinner)
+
+  httpClientBuilder.addInterceptor(AuthInterceptor())
+
+  return httpClientBuilder.build()
 }
 
 fun provideRetrofit(client: OkHttpClient, baseUrl: String): Retrofit {
