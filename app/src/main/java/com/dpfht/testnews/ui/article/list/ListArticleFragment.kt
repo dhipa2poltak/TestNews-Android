@@ -48,8 +48,8 @@ class ListArticleFragment: BaseFragment() {
     return binding.root
   }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
     val args = ListArticleFragmentArgs.fromBundle(requireArguments())
     categoryName = args.categoryName
@@ -76,19 +76,19 @@ class ListArticleFragment: BaseFragment() {
   }
 
   private fun fetchNewsLiveData(query: String?) {
-    viewModel.fetchArticles(sourceId, query).observe(requireActivity(), {
+    viewModel.fetchArticles(sourceId, query).observe(requireActivity()) {
       lifecycleScope.launch {
         adapter.submitData(it)
       }
-    })
+    }
 
-    viewModel.getState()?.observe(requireActivity(), { state ->
+    viewModel.getState()?.observe(requireActivity()) { state ->
       if (state == State.LOADING) {
         prgDialog.show()
       } else {
         prgDialog.dismiss()
       }
-    })
+    }
   }
 
   private fun doSearch(textSearch: String) {
@@ -127,9 +127,10 @@ class ListArticleFragment: BaseFragment() {
 
   private fun setClickListenerAdapter() {
     adapter.onClickArticleItem = { article ->
-      val action = ListArticleFragmentDirections.actionListArticleFragmentToDetailsArticleFragment()
-      action.url = article.url
-      action.title = article.title
+      val action = ListArticleFragmentDirections.actionListArticleFragmentToDetailsArticleFragment(
+        article.url,
+        article.title
+      )
       Navigation.findNavController(requireView()).navigate(action)
     }
   }

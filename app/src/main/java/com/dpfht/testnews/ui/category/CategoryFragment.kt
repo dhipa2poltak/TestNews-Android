@@ -31,8 +31,8 @@ class CategoryFragment: BaseFragment() {
     return binding.root
   }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
     setToolbar()
 
@@ -40,17 +40,18 @@ class CategoryFragment: BaseFragment() {
     binding.rvCategory.adapter = adapter
 
     adapter.onCategoryClick = { categoryName ->
-      val action = CategoryFragmentDirections.actionCategoryFragmentToSourceFragment()
-      action.categoryName = categoryName
+      val action = CategoryFragmentDirections.actionCategoryFragmentToSourceFragment(
+        categoryName
+      )
       Navigation.findNavController(requireView()).navigate(action)
     }
 
-    viewModel.categoryData.observe(requireActivity(), {
+    viewModel.categoryData.observe(requireActivity()) {
       if (it.isNotEmpty()) {
         adapter.addData(it)
         viewModel.resetCategoryData()
       }
-    })
+    }
 
     if (viewModel.categories.size == 0) {
       viewModel.start()

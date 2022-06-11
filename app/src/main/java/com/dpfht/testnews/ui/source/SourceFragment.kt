@@ -35,8 +35,8 @@ class SourceFragment: BaseFragment() {
     return binding.root
   }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
     val args = SourceFragmentArgs.fromBundle(requireArguments())
     categoryName = args.categoryName
@@ -47,44 +47,43 @@ class SourceFragment: BaseFragment() {
     binding.rvSource.adapter = adapter
 
     adapter.onClickSource = { source ->
-      val action = SourceFragmentDirections.actionSourceFragmentToListArticleFragment()
-      action.categoryName = categoryName
-      action.sourceName = source.name
-      action.sourceId = source.id
+      val action = SourceFragmentDirections.actionSourceFragmentToListArticleFragment(
+        categoryName, source.name, source.id
+      )
       Navigation.findNavController(requireView()).navigate(action)
     }
 
-    viewModel.sourceData.observe(requireActivity(), {
+    viewModel.sourceData.observe(requireActivity()) {
       if (it.isNotEmpty()) {
         adapter.addData(it)
         viewModel.resetSourceData()
       }
-    })
+    }
 
-    viewModel.clearSourceData.observe(requireActivity(), {
+    viewModel.clearSourceData.observe(requireActivity()) {
       if (it) {
         adapter.clearData()
         viewModel.resetClearSourceData()
       }
-    })
+    }
 
     binding.etSearchSource.addTextChangedListener {
       viewModel.doFilter(it.toString())
     }
 
-    viewModel.isShowDialogLoading.observe(requireActivity(), { value ->
+    viewModel.isShowDialogLoading.observe(requireActivity()) { value ->
       if (value) {
         prgDialog.show()
       } else {
         prgDialog.dismiss()
       }
-    })
+    }
 
-    viewModel.toastMessage.observe(requireActivity(), { value ->
+    viewModel.toastMessage.observe(requireActivity()) { value ->
       if (value != null && value.isNotEmpty()) {
         Toast.makeText(requireContext(), value, Toast.LENGTH_SHORT).show()
       }
-    })
+    }
 
     if (viewModel.sources.size == 0) {
       viewModel.start(categoryName)

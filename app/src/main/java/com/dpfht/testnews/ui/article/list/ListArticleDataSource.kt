@@ -18,17 +18,17 @@ class ListArticleDataSource(private val restService: RestService, private val so
 
     val page = params.key ?: DEFAULT_PAGE_INDEX
 
-    try {
+    return try {
       val response = restService.getArticles(page, DEFAULT_PAGE_SIZE, sourceId, query)
       updateState(State.DONE)
-      return LoadResult.Page(
+      LoadResult.Page(
         response.articles, prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1,
         nextKey = if (response.articles.isEmpty()) null else page + 1
       )
     } catch (e: Exception) {
       e.printStackTrace()
       updateState(State.ERROR)
-      return LoadResult.Error(e)
+      LoadResult.Error(e)
     }
   }
 

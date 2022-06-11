@@ -31,8 +31,8 @@ class DetailsArticleFragment: BaseFragment() {
   }
 
   @SuppressLint("SetJavaScriptEnabled")
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
     val args = DetailsArticleFragmentArgs.fromBundle(requireArguments())
 
@@ -43,6 +43,7 @@ class DetailsArticleFragment: BaseFragment() {
       binding.wvArticle.settings.builtInZoomControls = true
       binding.wvArticle.settings.setSupportZoom(true)
       binding.wvArticle.webViewClient = object : WebViewClient() {
+        @Deprecated("Deprecated in Java", ReplaceWith("false"))
         override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
           return false
         }
