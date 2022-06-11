@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.dpfht.testnews.ui.base.BaseViewModel
-import com.dpfht.testnews.model.Source
-import com.dpfht.testnews.model.SourceResponse
-import com.dpfht.testnews.net.ResultWrapper.GenericError
-import com.dpfht.testnews.net.ResultWrapper.NetworkError
-import com.dpfht.testnews.net.ResultWrapper.Success
+import com.dpfht.testnews.data.model.remote.Source
+import com.dpfht.testnews.data.model.remote.SourceResponse
+import com.dpfht.testnews.data.api.rest.ResultWrapper.GenericError
+import com.dpfht.testnews.data.api.rest.ResultWrapper.NetworkError
+import com.dpfht.testnews.data.api.rest.ResultWrapper.Success
+import com.dpfht.testnews.data.repository.source.SourceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

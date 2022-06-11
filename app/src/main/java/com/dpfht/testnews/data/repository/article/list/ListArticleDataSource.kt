@@ -1,13 +1,13 @@
-package com.dpfht.testnews.ui.article.list
+package com.dpfht.testnews.data.repository.article.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.dpfht.testnews.ui.article.list.ListArticleRepositoryImpl.Companion.DEFAULT_PAGE_INDEX
-import com.dpfht.testnews.ui.article.list.ListArticleRepositoryImpl.Companion.DEFAULT_PAGE_SIZE
-import com.dpfht.testnews.model.Article
-import com.dpfht.testnews.net.State
-import com.dpfht.testnews.rest.RestService
+import com.dpfht.testnews.data.repository.article.list.ListArticleRepositoryImpl.Companion.DEFAULT_PAGE_INDEX
+import com.dpfht.testnews.data.repository.article.list.ListArticleRepositoryImpl.Companion.DEFAULT_PAGE_SIZE
+import com.dpfht.testnews.data.model.remote.Article
+import com.dpfht.testnews.data.api.rest.State
+import com.dpfht.testnews.data.api.rest.RestService
 
 class ListArticleDataSource(private val restService: RestService, private val sourceId: String, private val query: String?): PagingSource<Int, Article>() {
 

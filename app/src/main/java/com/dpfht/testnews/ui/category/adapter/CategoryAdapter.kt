@@ -1,11 +1,12 @@
-package com.dpfht.testnews.ui.category
+package com.dpfht.testnews.ui.category.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dpfht.testnews.databinding.RowCategoryBinding
+import com.dpfht.testnews.ui.category.adapter.CategoryAdapter.CategoryHolder
 
-class CategoryAdapter(private val categories: ArrayList<String>): RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
+class CategoryAdapter(private val categories: ArrayList<String>): RecyclerView.Adapter<CategoryHolder>() {
 
   private lateinit var binding: RowCategoryBinding
 

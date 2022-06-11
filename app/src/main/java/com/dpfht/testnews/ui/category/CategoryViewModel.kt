@@ -2,6 +2,7 @@ package com.dpfht.testnews.ui.category
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.dpfht.testnews.data.repository.category.CategoryRepository
 import com.dpfht.testnews.ui.base.BaseViewModel
 
 class CategoryViewModel(private val repository: CategoryRepository): BaseViewModel() {

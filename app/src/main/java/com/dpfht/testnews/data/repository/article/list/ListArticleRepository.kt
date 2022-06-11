@@ -1,9 +1,9 @@
-package com.dpfht.testnews.ui.article.list
+package com.dpfht.testnews.data.repository.article.list
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
-import com.dpfht.testnews.model.Article
-import com.dpfht.testnews.net.State
+import com.dpfht.testnews.data.model.remote.Article
+import com.dpfht.testnews.data.api.rest.State
 
 interface ListArticleRepository {
 

@@ -1,4 +1,4 @@
-package com.dpfht.testnews.model
+package com.dpfht.testnews.data.model.remote
 
 import com.google.gson.annotations.SerializedName
 

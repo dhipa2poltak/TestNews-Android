@@ -1,4 +1,4 @@
-package com.dpfht.testnews.net
+package com.dpfht.testnews.data.api.rest
 
 enum class State {
   DONE, LOADING, ERROR

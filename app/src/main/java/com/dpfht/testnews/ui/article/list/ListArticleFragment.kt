@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpfht.testnews.Constant
 import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.FragmentListArticleBinding
-import com.dpfht.testnews.net.State
+import com.dpfht.testnews.data.api.rest.State
+import com.dpfht.testnews.ui.article.list.adapter.ListArticleAdapter
 import com.dpfht.testnews.ui.base.BaseFragment
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel

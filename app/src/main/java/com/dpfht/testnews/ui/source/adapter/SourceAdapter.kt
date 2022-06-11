@@ -1,12 +1,13 @@
-package com.dpfht.testnews.ui.source
+package com.dpfht.testnews.ui.source.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dpfht.testnews.databinding.RowSourceBinding
-import com.dpfht.testnews.model.Source
+import com.dpfht.testnews.data.model.remote.Source
+import com.dpfht.testnews.ui.source.adapter.SourceAdapter.SourceHolder
 
-class SourceAdapter(private val sources: ArrayList<Source>): RecyclerView.Adapter<SourceAdapter.SourceHolder>() {
+class SourceAdapter(private val sources: ArrayList<Source>): RecyclerView.Adapter<SourceHolder>() {
 
   private lateinit var binding: RowSourceBinding
 

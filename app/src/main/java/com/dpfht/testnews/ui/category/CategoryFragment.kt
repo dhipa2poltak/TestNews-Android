@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.FragmentCategoryBinding
 import com.dpfht.testnews.ui.base.BaseFragment
+import com.dpfht.testnews.ui.category.adapter.CategoryAdapter
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf

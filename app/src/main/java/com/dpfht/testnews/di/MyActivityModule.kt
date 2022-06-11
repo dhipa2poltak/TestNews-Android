@@ -3,17 +3,17 @@ package com.dpfht.testnews.di
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dpfht.testnews.R
-import com.dpfht.testnews.rest.RestService
-import com.dpfht.testnews.ui.article.list.ListArticleAdapter
-import com.dpfht.testnews.ui.article.list.ListArticleRepository
-import com.dpfht.testnews.ui.article.list.ListArticleRepositoryImpl
-import com.dpfht.testnews.ui.category.CategoryAdapter
-import com.dpfht.testnews.ui.category.CategoryRepository
-import com.dpfht.testnews.ui.category.CategoryRepositoryImpl
+import com.dpfht.testnews.data.api.rest.RestService
+import com.dpfht.testnews.ui.article.list.adapter.ListArticleAdapter
+import com.dpfht.testnews.data.repository.article.list.ListArticleRepository
+import com.dpfht.testnews.data.repository.article.list.ListArticleRepositoryImpl
+import com.dpfht.testnews.ui.category.adapter.CategoryAdapter
+import com.dpfht.testnews.data.repository.category.CategoryRepository
+import com.dpfht.testnews.data.repository.category.CategoryRepositoryImpl
 import com.dpfht.testnews.ui.category.CategoryViewModel
-import com.dpfht.testnews.ui.source.SourceAdapter
-import com.dpfht.testnews.ui.source.SourceRepository
-import com.dpfht.testnews.ui.source.SourceRepositoryImplement
+import com.dpfht.testnews.ui.source.adapter.SourceAdapter
+import com.dpfht.testnews.data.repository.source.SourceRepository
+import com.dpfht.testnews.data.repository.source.SourceRepositoryImpl
 import com.dpfht.testnews.ui.source.SourceViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -39,7 +39,7 @@ fun provideCategoryAdapter(categoryViewModel: CategoryViewModel): CategoryAdapte
 }
 
 fun provideSourceRepository(restService: RestService): SourceRepository {
-  return SourceRepositoryImplement(restService)
+  return SourceRepositoryImpl(restService)
 }
 
 fun provideSourceAdapter(sourceViewModel: SourceViewModel): SourceAdapter {

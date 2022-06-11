@@ -2,7 +2,7 @@ package com.dpfht.testnews.di
 
 import com.dpfht.testnews.BuildConfig
 import com.dpfht.testnews.Config
-import com.dpfht.testnews.rest.RestService
+import com.dpfht.testnews.data.api.rest.RestService
 import okhttp3.CertificatePinner
 
 import okhttp3.OkHttpClient

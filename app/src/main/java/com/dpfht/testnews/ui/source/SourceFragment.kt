@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dpfht.testnews.R
 import com.dpfht.testnews.databinding.FragmentSourceBinding
 import com.dpfht.testnews.ui.base.BaseFragment
+import com.dpfht.testnews.ui.source.adapter.SourceAdapter
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 

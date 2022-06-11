@@ -1,4 +1,4 @@
-package com.dpfht.testnews.net
+package com.dpfht.testnews.data.api.rest
 
 sealed class ResultWrapper<out T> {
   data class Success<out T>(val value: T): ResultWrapper<T>()

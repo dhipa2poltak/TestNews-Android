@@ -1,4 +1,4 @@
-package com.dpfht.testnews.net
+package com.dpfht.testnews.data.api.rest
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

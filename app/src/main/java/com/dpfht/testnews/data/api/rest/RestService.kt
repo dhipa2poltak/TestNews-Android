@@ -1,8 +1,8 @@
-package com.dpfht.testnews.rest
+package com.dpfht.testnews.data.api.rest
 
 import com.dpfht.testnews.Config
-import com.dpfht.testnews.model.ArticlesResponse
-import com.dpfht.testnews.model.SourceResponse
+import com.dpfht.testnews.data.model.remote.ArticlesResponse
+import com.dpfht.testnews.data.model.remote.SourceResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
