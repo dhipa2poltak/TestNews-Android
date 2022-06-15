@@ -33,6 +33,7 @@ class DetailsArticleFragment: BaseFragment() {
   @SuppressLint("SetJavaScriptEnabled")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    prgDialog.setCancelable(true)
 
     val args = DetailsArticleFragmentArgs.fromBundle(requireArguments())
 
