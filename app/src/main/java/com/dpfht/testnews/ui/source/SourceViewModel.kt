@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class SourceViewModel(private val sourceRepository: SourceRepository): BaseViewModel() {
 
-  val sources = ArrayList<Source>()
+  private val sources = ArrayList<Source>()
   val sourcesFilter = ArrayList<Source>()
 
   private val _sourceData = MutableLiveData<List<Source>>()
@@ -23,6 +23,12 @@ class SourceViewModel(private val sourceRepository: SourceRepository): BaseViewM
 
   private val _clearSourceData = MutableLiveData(false)
   val clearSourceData: LiveData<Boolean> get() = _clearSourceData
+
+  private var _categoryName = ""
+
+  fun setCategoryName(categoryName: String) {
+    _categoryName = categoryName
+  }
 
   fun resetSourceData() {
     _sourceData.value = arrayListOf()
@@ -32,8 +38,10 @@ class SourceViewModel(private val sourceRepository: SourceRepository): BaseViewM
     _clearSourceData.value = false
   }
 
-  fun start(category: String) {
-    doGetSource(category)
+  fun start() {
+    if (sources.isEmpty()) {
+      doGetSource(_categoryName)
+    }
   }
 
   private fun doGetSource(category: String) {

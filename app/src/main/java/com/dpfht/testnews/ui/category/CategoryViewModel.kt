@@ -17,9 +17,11 @@ class CategoryViewModel(private val repository: CategoryRepository): BaseViewMod
   }
 
   fun start() {
-    val datas = repository.getCategories()
-    if (datas.isNotEmpty()) {
-      _categoryData.postValue(datas)
+    if (categories.isEmpty()) {
+      val datas = repository.getCategories()
+      if (datas.isNotEmpty()) {
+        _categoryData.postValue(datas)
+      }
     }
   }
 }

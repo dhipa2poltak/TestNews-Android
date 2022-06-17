@@ -86,9 +86,8 @@ class SourceFragment: BaseFragment() {
       }
     }
 
-    if (viewModel.sources.size == 0) {
-      viewModel.start(categoryName)
-    }
+    viewModel.setCategoryName(categoryName)
+    viewModel.start()
   }
 
   private fun setToolbar() {

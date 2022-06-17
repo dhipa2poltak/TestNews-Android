@@ -54,9 +54,7 @@ class CategoryFragment: BaseFragment() {
       }
     }
 
-    if (viewModel.categories.size == 0) {
-      viewModel.start()
-    }
+    viewModel.start()
   }
 
   private fun setToolbar() {
