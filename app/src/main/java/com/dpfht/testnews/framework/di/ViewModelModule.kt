@@ -1,4 +1,4 @@
-package com.dpfht.testnews.di
+package com.dpfht.testnews.framework.di
 
 import com.dpfht.testnews.ui.article.list.ListArticleViewModel
 import com.dpfht.testnews.ui.category.CategoryViewModel

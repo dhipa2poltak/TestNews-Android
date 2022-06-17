@@ -1,4 +1,4 @@
-package com.dpfht.testnews.data.api.rest
+package com.dpfht.testnews.framework.rest.api
 
 import com.dpfht.testnews.Config
 import okhttp3.Interceptor

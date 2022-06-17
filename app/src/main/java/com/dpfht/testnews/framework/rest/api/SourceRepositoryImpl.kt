@@ -1,9 +1,7 @@
-package com.dpfht.testnews.data.repository.source
+package com.dpfht.testnews.framework.rest.api
 
 import com.dpfht.testnews.data.model.remote.SourceResponse
-import com.dpfht.testnews.data.api.rest.ResultWrapper
-import com.dpfht.testnews.data.api.rest.safeApiCall
-import com.dpfht.testnews.data.api.rest.RestService
+import com.dpfht.testnews.data.repository.source.SourceRepository
 import kotlinx.coroutines.Dispatchers
 
 class SourceRepositoryImpl(private val restService: RestService): SourceRepository {

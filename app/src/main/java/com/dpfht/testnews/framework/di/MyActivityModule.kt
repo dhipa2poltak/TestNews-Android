@@ -1,26 +1,27 @@
-package com.dpfht.testnews.di
+package com.dpfht.testnews.framework.di
 
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.dpfht.testnews.R
-import com.dpfht.testnews.data.api.rest.RestService
+import com.dpfht.testnews.R.array
+import com.dpfht.testnews.framework.rest.api.RestService
 import com.dpfht.testnews.ui.article.list.adapter.ListArticleAdapter
 import com.dpfht.testnews.data.repository.article.list.ListArticleRepository
-import com.dpfht.testnews.data.repository.article.list.ListArticleRepositoryImpl
+import com.dpfht.testnews.framework.rest.api.ListArticleRepositoryImpl
 import com.dpfht.testnews.ui.category.adapter.CategoryAdapter
 import com.dpfht.testnews.data.repository.category.CategoryRepository
-import com.dpfht.testnews.data.repository.category.CategoryRepositoryImpl
+import com.dpfht.testnews.framework.rest.api.CategoryRepositoryImpl
 import com.dpfht.testnews.ui.category.CategoryViewModel
 import com.dpfht.testnews.ui.source.adapter.SourceAdapter
 import com.dpfht.testnews.data.repository.source.SourceRepository
-import com.dpfht.testnews.data.repository.source.SourceRepositoryImpl
+import com.dpfht.testnews.framework.rest.api.SourceRepositoryImpl
 import com.dpfht.testnews.ui.source.SourceViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val myActivityModule = module {
 
-  factory { provideCategoryRepository(androidContext().resources.getStringArray(R.array.arr_news_categories).toList()) }
+  factory { provideCategoryRepository(androidContext().resources.getStringArray(array.arr_news_categories).toList()) }
   factory { provideCategoryAdapter(it[0]) }
   factory { provideSourceRepository(get()) }
   factory { provideSourceAdapter(get()) }

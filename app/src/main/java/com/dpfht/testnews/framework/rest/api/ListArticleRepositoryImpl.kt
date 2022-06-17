@@ -1,4 +1,4 @@
-package com.dpfht.testnews.data.repository.article.list
+package com.dpfht.testnews.framework.rest.api
 
 import androidx.lifecycle.LiveData
 import androidx.paging.Pager
@@ -6,8 +6,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.dpfht.testnews.data.model.remote.Article
-import com.dpfht.testnews.data.api.rest.State
-import com.dpfht.testnews.data.api.rest.RestService
+import com.dpfht.testnews.data.repository.article.list.ListArticleDataSource
+import com.dpfht.testnews.data.repository.article.list.ListArticleRepository
 
 class ListArticleRepositoryImpl(private val restService: RestService): ListArticleRepository {
 

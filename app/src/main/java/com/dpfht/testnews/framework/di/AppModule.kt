@@ -1,10 +1,10 @@
-package com.dpfht.testnews.di
+package com.dpfht.testnews.framework.di
 
 import com.dpfht.testnews.BuildConfig
 import com.dpfht.testnews.Config
-import com.dpfht.testnews.data.api.rest.AuthInterceptor
-import com.dpfht.testnews.data.api.rest.RestService
-import com.dpfht.testnews.data.api.rest.UnsafeOkHttpClient
+import com.dpfht.testnews.framework.rest.api.AuthInterceptor
+import com.dpfht.testnews.framework.rest.api.RestService
+import com.dpfht.testnews.framework.rest.api.UnsafeOkHttpClient
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import org.koin.dsl.module

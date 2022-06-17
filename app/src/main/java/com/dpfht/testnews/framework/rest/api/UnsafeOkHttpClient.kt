@@ -1,4 +1,4 @@
-package com.dpfht.testnews.data.api.rest
+package com.dpfht.testnews.framework.rest.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
