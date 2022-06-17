@@ -1,5 +1,6 @@
 package com.dpfht.testnews.data.model.remote
 
+import com.dpfht.testnews.domain.model.GetSourceResult
 import com.google.gson.annotations.SerializedName
 
 data class SourceResponse(
@@ -25,3 +26,5 @@ data class Source(
   @SerializedName("country")
   val country: String
 )
+
+fun SourceResponse.toDomain() = GetSourceResult(this.sources)

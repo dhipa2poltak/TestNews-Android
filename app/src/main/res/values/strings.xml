@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">TestNews</string>
+  <string name="app_name">Test News</string>
 
   <string name="text_category">Category</string>
   <string name="text_source">Source</string>
