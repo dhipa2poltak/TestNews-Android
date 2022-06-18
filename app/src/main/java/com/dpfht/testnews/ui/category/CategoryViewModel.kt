@@ -2,10 +2,14 @@ package com.dpfht.testnews.ui.category
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dpfht.testnews.data.repository.category.CategoryRepository
+import androidx.lifecycle.viewModelScope
 import com.dpfht.testnews.ui.base.BaseViewModel
+import com.dpfht.testnews.usecase.GetCategoryUseCase
+import com.dpfht.testnews.usecase.UseCaseResultWrapper.ErrorResult
+import com.dpfht.testnews.usecase.UseCaseResultWrapper.Success
+import kotlinx.coroutines.launch
 
-class CategoryViewModel(private val repository: CategoryRepository): BaseViewModel() {
+class CategoryViewModel(private val getCategoryUseCase: GetCategoryUseCase): BaseViewModel() {
 
   var categories = ArrayList<String>()
 
@@ -18,9 +22,18 @@ class CategoryViewModel(private val repository: CategoryRepository): BaseViewMod
 
   fun start() {
     if (categories.isEmpty()) {
-      val datas = repository.getCategories()
-      if (datas.isNotEmpty()) {
-        _categoryData.postValue(datas)
+      viewModelScope.launch {
+        when (val result = getCategoryUseCase()) {
+          is Success -> {
+            if (result.value.isNotEmpty()) {
+              categories = ArrayList(result.value)
+              _categoryData.postValue(categories)
+            }
+          }
+          is ErrorResult -> {
+
+          }
+        }
       }
     }
   }

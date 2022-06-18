@@ -7,7 +7,7 @@ class GetSourceUseCaseImpl(
   private val sourceRepository: SourceRepository
 ): GetSourceUseCase {
 
-  override suspend fun invoke(categoryName: String): UseCaseResultWrapper<GetSourceResult> {
+  override suspend operator fun invoke(categoryName: String): UseCaseResultWrapper<GetSourceResult> {
     return sourceRepository.getSources(categoryName)
   }
 }
