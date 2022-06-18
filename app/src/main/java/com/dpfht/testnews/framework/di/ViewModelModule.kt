@@ -16,6 +16,6 @@ val viewModelModule = module {
   }
 
   viewModel {
-    ListArticleViewModel(get())
+    ListArticleViewModel(get(), get())
   }
 }

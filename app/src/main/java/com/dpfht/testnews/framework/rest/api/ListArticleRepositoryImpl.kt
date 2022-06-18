@@ -6,7 +6,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.dpfht.testnews.data.model.remote.Article
-import com.dpfht.testnews.data.repository.article.list.ListArticleDataSource
 import com.dpfht.testnews.data.repository.article.list.ListArticleRepository
 
 class ListArticleRepositoryImpl(private val restService: RestService): ListArticleRepository {
