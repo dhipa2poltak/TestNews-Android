@@ -10,12 +10,16 @@ import com.dpfht.testnews.data.repository.article.list.ListArticleRepository
 import com.dpfht.testnews.framework.rest.api.ListArticleRepositoryImpl
 import com.dpfht.testnews.ui.category.adapter.CategoryAdapter
 import com.dpfht.testnews.data.repository.category.CategoryRepository
+import com.dpfht.testnews.data.repository.source.SourceDataSource
 import com.dpfht.testnews.framework.rest.api.CategoryRepositoryImpl
 import com.dpfht.testnews.ui.category.CategoryViewModel
 import com.dpfht.testnews.ui.source.adapter.SourceAdapter
 import com.dpfht.testnews.data.repository.source.SourceRepository
-import com.dpfht.testnews.framework.rest.api.SourceRepositoryImpl
+import com.dpfht.testnews.data.repository.source.SourceRepositoryImpl
+import com.dpfht.testnews.framework.rest.api.RemoteSourceDataSourceImpl
 import com.dpfht.testnews.ui.source.SourceViewModel
+import com.dpfht.testnews.usecase.GetSourceUseCase
+import com.dpfht.testnews.usecase.GetSourceUseCaseImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -23,12 +27,32 @@ val myActivityModule = module {
 
   factory { provideCategoryRepository(androidContext().resources.getStringArray(array.arr_news_categories).toList()) }
   factory { provideCategoryAdapter(it[0]) }
+
+  factory { provideSourceDataSource(get()) }
   factory { provideSourceRepository(get()) }
+  factory { provideGetSourceUseCase(get()) }
+
   factory { provideSourceAdapter(get()) }
   factory { provideListArticleRepository(get()) }
   factory { provideListArticleAdapter() }
 
   factory { provideLoadingDialog(it[0]) }
+}
+
+fun provideSourceDataSource(restService: RestService): SourceDataSource {
+  return RemoteSourceDataSourceImpl(restService)
+}
+
+fun provideSourceRepository(sourceDataSource: SourceDataSource): SourceRepository {
+  return SourceRepositoryImpl(sourceDataSource)
+}
+
+fun provideGetSourceUseCase(sourceRepository: SourceRepository): GetSourceUseCase {
+  return GetSourceUseCaseImpl(sourceRepository)
+}
+
+fun provideListArticleRepository(restService: RestService): ListArticleRepository {
+  return ListArticleRepositoryImpl(restService)
 }
 
 fun provideCategoryRepository(categories: List<String>): CategoryRepository {
@@ -39,17 +63,9 @@ fun provideCategoryAdapter(categoryViewModel: CategoryViewModel): CategoryAdapte
   return CategoryAdapter(categoryViewModel.categories)
 }
 
-fun provideSourceRepository(restService: RestService): SourceRepository {
-  return SourceRepositoryImpl(restService)
-}
-
 fun provideSourceAdapter(sourceViewModel: SourceViewModel): SourceAdapter {
   //return SourceAdapter(sourceViewModel.sources)
   return SourceAdapter(sourceViewModel.sourcesFilter)
-}
-
-fun provideListArticleRepository(restService: RestService): ListArticleRepository {
-  return ListArticleRepositoryImpl(restService)
 }
 
 fun provideListArticleAdapter(): ListArticleAdapter {
