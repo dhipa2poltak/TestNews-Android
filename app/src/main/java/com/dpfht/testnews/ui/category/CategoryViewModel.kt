@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 class CategoryViewModel(private val getCategoryUseCase: GetCategoryUseCase): BaseViewModel() {
 
   var categories = ArrayList<String>()
+    private set
 
   private val _categoryData = MutableLiveData<List<String>>()
   val categoryData: LiveData<List<String>> get() = _categoryData
