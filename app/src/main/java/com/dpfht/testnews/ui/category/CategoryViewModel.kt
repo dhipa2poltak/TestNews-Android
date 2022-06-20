@@ -32,7 +32,7 @@ class CategoryViewModel(private val getCategoryUseCase: GetCategoryUseCase): Bas
             }
           }
           is ErrorResult -> {
-
+            toastMessage.postValue(result.message)
           }
         }
       }

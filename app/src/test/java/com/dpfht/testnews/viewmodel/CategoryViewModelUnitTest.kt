@@ -34,6 +34,9 @@ class CategoryViewModelUnitTest {
   @Mock
   private lateinit var categoryDataObserver: Observer<List<String>>
 
+  @Mock
+  private lateinit var toastMessageObserver: Observer<String>
+
   @Before
   fun setup() {
     viewModel = CategoryViewModel(getCategoryUseCase)
@@ -50,5 +53,17 @@ class CategoryViewModelUnitTest {
 
     verify(categoryDataObserver).onChanged(eq(categories))
     //Assert.assertEquals(categories, result.value)
+  }
+
+  @Test
+  fun `failed fetch category`() = runBlocking {
+    val msg = "error fetch category"
+    val result = UseCaseResultWrapper.ErrorResult(msg)
+    whenever(getCategoryUseCase.invoke()).thenReturn(result)
+
+    viewModel.toastMessage.observeForever(toastMessageObserver)
+    viewModel.start()
+
+    verify(toastMessageObserver).onChanged(eq(msg))
   }
 }
