@@ -3,10 +3,8 @@ package com.dpfht.testnews.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.dpfht.testnews.MainCoroutineRule
-import com.dpfht.testnews.data.repository.category.CategoryRepository
 import com.dpfht.testnews.ui.category.CategoryViewModel
 import com.dpfht.testnews.usecase.GetCategoryUseCase
-import com.dpfht.testnews.usecase.GetCategoryUseCaseImpl
 import com.dpfht.testnews.usecase.UseCaseResultWrapper
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -31,9 +29,6 @@ class CategoryViewModelUnitTest {
   private lateinit var viewModel: CategoryViewModel
 
   @Mock
-  private lateinit var repository: CategoryRepository
-
-  @Mock
   private lateinit var getCategoryUseCase: GetCategoryUseCase
 
   @Mock
@@ -41,7 +36,6 @@ class CategoryViewModelUnitTest {
 
   @Before
   fun setup() {
-    getCategoryUseCase = GetCategoryUseCaseImpl(repository)
     viewModel = CategoryViewModel(getCategoryUseCase)
   }
 

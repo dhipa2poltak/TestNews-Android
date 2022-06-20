@@ -4,11 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.dpfht.testnews.MainCoroutineRule
 import com.dpfht.testnews.data.model.remote.Source
-import com.dpfht.testnews.data.repository.source.SourceRepository
 import com.dpfht.testnews.domain.model.GetSourceResult
 import com.dpfht.testnews.ui.source.SourceViewModel
 import com.dpfht.testnews.usecase.GetSourceUseCase
-import com.dpfht.testnews.usecase.GetSourceUseCaseImpl
 import com.dpfht.testnews.usecase.UseCaseResultWrapper
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -34,9 +32,6 @@ class SourceViewModelUnitTest {
   private lateinit var viewModel: SourceViewModel
 
   @Mock
-  private lateinit var repository: SourceRepository
-
-  @Mock
   private lateinit var getSourceUseCase: GetSourceUseCase
 
   @Mock
@@ -44,7 +39,6 @@ class SourceViewModelUnitTest {
 
   @Before
   fun setup() {
-    getSourceUseCase = GetSourceUseCaseImpl(repository)
     viewModel = SourceViewModel(getSourceUseCase)
   }
 
