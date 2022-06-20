@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
@@ -45,6 +46,12 @@ class CategoryFragment: BaseFragment() {
         categoryName
       )
       Navigation.findNavController(requireView()).navigate(action)
+    }
+
+    viewModel.toastMessage.observe(requireActivity()) { value ->
+      if (value != null && value.isNotEmpty()) {
+        Toast.makeText(requireContext(), value, Toast.LENGTH_SHORT).show()
+      }
     }
 
     viewModel.categoryData.observe(requireActivity()) {
