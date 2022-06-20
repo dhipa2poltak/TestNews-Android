@@ -37,6 +37,9 @@ class SourceViewModelUnitTest {
   @Mock
   private lateinit var sourceDataObserver: Observer<List<Source>>
 
+  @Mock
+  private lateinit var toastMessageObserver: Observer<String>
+
   @Before
   fun setup() {
     viewModel = SourceViewModel(getSourceUseCase)
@@ -75,5 +78,19 @@ class SourceViewModelUnitTest {
     viewModel.start()
 
     verify(sourceDataObserver).onChanged(eq(sources))
+  }
+
+  @Test
+  fun `failed fetch source`() = runBlocking {
+    val msg = "error fetch source"
+    val result = UseCaseResultWrapper.ErrorResult(msg)
+
+    whenever(getSourceUseCase.invoke(any())).thenReturn(result)
+
+    viewModel.toastMessage.observeForever(toastMessageObserver)
+    viewModel.setCategoryName("test")
+    viewModel.start()
+
+    verify(toastMessageObserver).onChanged(eq(msg))
   }
 }
